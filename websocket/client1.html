@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>网页聊天系统</h2>
+    <button onclick="sendMessage()">
+        发送消息
+    </button>
+    <script>
+        //创建websocket链接
+        var ws = new WebSocket("ws:localhost:9000")
+        ws.open = function(){
+           //打开链接  
+           console.log('服务器链接成功')   
+        }
+        ws.onmessage = function(e){
+            //接收ws消息
+            console.log('收到消息',e)
+        }
+        //用户端操作给ws发送消息
+        function sendMessage(){
+            ws.send('任意发送一条消息')
+        }
+
+    </script>
+</body>
+</html>

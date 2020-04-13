@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>注册用户</title>
+</head>
+<body>
+<form action="/register" method="post">
+    姓名:<input type="text" name="username"><br>
+    psd:<input type="password" name="psd"><br>
+    <!--<button type="submit">submit</button>-->
+    <div id="user">获取用户列表</div>
+</form>
+<script>
+    window.onload = function(){
+        console.log('0')
+        document.getElementById('user').onclick=function(){
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp=new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    //document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                    console.log('xmlhttp',xmlhttp.responseText)
+                }
+            }
+            xmlhttp.open("GET","/user",true);
+            xmlhttp.send();
+        }
+    }
+
+</script>
+</body>
+</html>
